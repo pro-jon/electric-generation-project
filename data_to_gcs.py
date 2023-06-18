@@ -6,7 +6,7 @@ from google.cloud import storage
 
 load_dotenv()
 
-init_data = '/home/jon/Projects/capstone/electric-generation-project/data/electric-generate-data.csv'
+init_data = os.environ.get('DATA')
 BUCKET = os.environ.get('GCP_GCS_BUCKET')
 destination_blob_name = 'electricity_generation/electric-generate-data.parquet'
 
@@ -36,7 +36,7 @@ def upload_blob(bucket, destination_blob_name, init_data):
 
     blob.upload_from_filename(init_data, if_generation_match=generation_match_precondition)
 
-    rint(
+    print(
         f"File {init_data} uploaded to {destination_blob_name}."
     )
 
